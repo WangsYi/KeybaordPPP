@@ -11,14 +11,14 @@
             <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <Label>设置按键：</Label>
-                    <TextBox MaxLength="1" MinWidth="30" KeyDown="UIElement_OnKeyDown"></TextBox>
+                    <TextBox MaxLength="1" MinWidth="30" KeyDown="UIElement_OnKeyDown" GotKeyboardFocus="UIElement_OnGotKeyboardFocus" LostKeyboardFocus="UIElement_OnLostKeyboardFocus"></TextBox>
                     <Label Margin="5,0,0,0">设置间隔：</Label>
                     <TextBox x:Name="IntervalText" TextChanged="IntervalText_OnTextChanged" MinWidth="30"></TextBox>
                     <TextBlock VerticalAlignment="Center">ms</TextBlock>
                     <Button x:Name="ButtonStart" Click="ButtonBase_OnClick" Content="开始">
                     </Button>
                 </StackPanel>
-                <TextBlock Margin="0,5,0,0" HorizontalAlignment="Center" Foreground="Gray">快捷键：F10，默认1秒5发</TextBlock>
+                <TextBlock Margin="0,5,0,0" HorizontalAlignment="Center" Foreground="Gray">快捷键：Ctrl+F10，默认1秒5发</TextBlock>
             </StackPanel>
         </GroupBox>
     </Grid>

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmuKeyBoard", "EmuKeyBoard\EmuKeyBoard.csproj", "{8CB974E9-E65C-44C7-B007-40344B9B848B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmuKeyAdvance", "EmuKeyAdvance\EmuKeyAdvance.csproj", "{49E0FDBB-FF74-4564-AD0C-7CCD8D67A592}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,8 +33,19 @@ Global
 		{49E0FDBB-FF74-4564-AD0C-7CCD8D67A592}.Release|Any CPU.Build.0 = Release|Any CPU
 		{49E0FDBB-FF74-4564-AD0C-7CCD8D67A592}.Release|x64.ActiveCfg = Release|x64
 		{49E0FDBB-FF74-4564-AD0C-7CCD8D67A592}.Release|x64.Build.0 = Release|x64
+		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Debug|x64.Build.0 = Debug|Any CPU
+		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Release|x64.ActiveCfg = Release|Any CPU
+		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75BAEAC8-ABCC-45A0-8F3B-6803828EE639}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,14 +25,12 @@ namespace EmuKeyAdvance
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string dllPath = @".\dd71800x64.64.dll";
-        private CDD dd;
         private int hotKeyRes;
         private IntPtr hWnd;
         private bool Running;
         private event HotKeyPressedHandler SwitchState;
         private delegate void HotKeyPressedHandler();
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -41,21 +41,26 @@ namespace EmuKeyAdvance
 
         private void MainWindow_Closed(object sender, EventArgs e)
         {
-          
+            Interception.DestroyContext(context);
         }
 
         private void MainWindow_SwitchState()
         {
-            
+
             Running = !Running;
             ButtonStart.Content = Running ? "停止" : "开始";
             Task.Factory.StartNew(() =>
             {
                 while (Running)
                 {
-                    dd.key(306, 1);
+
                     Thread.Sleep(IntervalTime / 2);
-                    dd.key(306, 2);
+                    var s = KeyToClick;
+                    s.key.state = 0;
+                    Interception.Send(context, tdevice, ref s, 1);
+                    s.key.state = 1;
+                    Interception.Send(context, tdevice, ref s, 1);
+                    
                     Thread.Sleep(IntervalTime / 2);
 
                 }
@@ -68,30 +73,42 @@ namespace EmuKeyAdvance
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
 
-            dd = new CDD();
-            LoadDllFile(dllPath);
+            Init();
             hWnd = new WindowInteropHelper(this).Handle;
             var hwndSource = HwndSource.FromHwnd(hWnd);
             hwndSource?.AddHook(new HwndSourceHook(WndProc));
             RegHotkey();
         }
-        private void LoadDllFile(string dllfile)
+
+        private IntPtr context;
+        private int tdevice;
+        Interception.Stroke stroke = new Interception.Stroke();
+        private void Init()
         {
-         
-
-            System.IO.FileInfo fi = new System.IO.FileInfo(dllfile);
-            if (!fi.Exists)
+            int device;
+            context = Interception.CreateContext();
+            
+            Console.WriteLine($"context:{context}");
+            Interception.SetFilter(context, Interception.IsKeyboard, Interception.Filter.KeyDown);
+            Task.Factory.StartNew(() =>
             {
-                System.Windows.MessageBox.Show("文件不存在");
-                return;
-            }
+                while (Interception.Receive(context, device = Interception.Wait(context), ref stroke, 1) > 0)
+                {
+                    Console.WriteLine("SCAN CODE: {0}/{1}", stroke.key.code, stroke.key.state);
+                    if (getFocus)
+                    {
+                        tdevice = device;
+                        KeyToClick = stroke;
+                    }
 
-            int ret = dd.Load(dllfile);
-            if (ret == -2) { System.Windows.MessageBox.Show("装载库时发生错误"); return; }
-            if (ret == -1) { System.Windows.MessageBox.Show("取函数地址时发生错误"); return; }
-            if (ret == 0) { System.Windows.MessageBox.Show("非增强模块"); }
+                  
 
-            return;
+
+                    Interception.Send(context, device, ref stroke, 1);
+
+                }
+            });
+
         }
         #region 快捷键相关
         private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam, ref bool handled)
@@ -110,7 +127,7 @@ namespace EmuKeyAdvance
         void RegHotkey()
         {
             Hotkey hotkey = new Hotkey(hWnd);
-            hotKeyRes = hotkey.RegisterHotkey(Keys.F10, null);
+            hotKeyRes = hotkey.RegisterHotkey(Keys.W, Hotkey.KeyFlags.MOD_ALT);
         }
 
         #endregion
@@ -118,10 +135,9 @@ namespace EmuKeyAdvance
         private void UIElement_OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             ((System.Windows.Controls.TextBox)sender).Text = e.Key.ToString();
-            this.KeyToClick = e.Key;
         }
 
-        public Key KeyToClick { get; set; }
+        public Interception.Stroke KeyToClick { get; set; }
 
         private void IntervalText_OnTextChanged(object sender, TextChangedEventArgs e)
         {
@@ -148,6 +164,31 @@ namespace EmuKeyAdvance
             SwitchState?.Invoke();
             System.Windows.Controls.Button b = (System.Windows.Controls.Button)sender;
             b.Content = Running ? "停止" : "开始";
+        }
+
+        private bool getFocus = false;
+        private void UIElement_OnGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            var ele = sender as UIElement;
+            getFocus = true;
+            int device;
+          
+
+        }
+
+        private void UIElement_OnLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            getFocus = false;
+        }
+    }
+    public static class Tools
+    {
+        public static T Clone<T>(T obj)
+        {
+            MemoryStream ms = new MemoryStream();
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(ms, obj);
+            return (T)formatter.Deserialize(ms);
         }
     }
 }
