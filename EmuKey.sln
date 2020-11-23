@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmuKeyBoard", "EmuKeyBoard\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmuKeyAdvance", "EmuKeyAdvance\EmuKeyAdvance.csproj", "{49E0FDBB-FF74-4564-AD0C-7CCD8D67A592}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyPPP", "KeyPPP\KeyPPP.csproj", "{22834BC9-792F-4C40-89F2-03BA8A035C84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,14 +33,14 @@ Global
 		{49E0FDBB-FF74-4564-AD0C-7CCD8D67A592}.Release|Any CPU.Build.0 = Release|Any CPU
 		{49E0FDBB-FF74-4564-AD0C-7CCD8D67A592}.Release|x64.ActiveCfg = Release|x64
 		{49E0FDBB-FF74-4564-AD0C-7CCD8D67A592}.Release|x64.Build.0 = Release|x64
-		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Debug|x64.Build.0 = Debug|Any CPU
-		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Release|x64.ActiveCfg = Release|Any CPU
-		{A8C9CD9B-59A7-42B3-B327-4C5EC34EDAB2}.Release|x64.Build.0 = Release|Any CPU
+		{22834BC9-792F-4C40-89F2-03BA8A035C84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22834BC9-792F-4C40-89F2-03BA8A035C84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22834BC9-792F-4C40-89F2-03BA8A035C84}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{22834BC9-792F-4C40-89F2-03BA8A035C84}.Debug|x64.Build.0 = Debug|Any CPU
+		{22834BC9-792F-4C40-89F2-03BA8A035C84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22834BC9-792F-4C40-89F2-03BA8A035C84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22834BC9-792F-4C40-89F2-03BA8A035C84}.Release|x64.ActiveCfg = Release|Any CPU
+		{22834BC9-792F-4C40-89F2-03BA8A035C84}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
